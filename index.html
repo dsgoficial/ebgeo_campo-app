@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>EBGeo Campo</title>
+<meta name="description" content="Baixe o app EBGeo Campo para Android: relatos do terreno e posição no mapa do EBGeo.">
+<link rel="icon" href="./logo_ebgeo.webp">
+<style>
+  :root { --fundo: #111827; --superficie: #1f2937; --borda: #374151; --texto: #f3f4f6; --suave: #9ca3af; --primario: #15803d; --destaque: #4ade80; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.55 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 48px; display: flex; flex-direction: column; gap: 24px; }
+  header { display: flex; align-items: center; gap: 14px; }
+  header img { width: 64px; height: 64px; }
+  h1 { margin: 0; font-size: 28px; line-height: 1.15; }
+  h1 span { color: var(--destaque); }
+  h2 { margin: 0 0 8px; font-size: 18px; }
+  p { margin: 0; color: #d1d5db; }
+  .suave { color: var(--suave); font-size: 14px; }
+  .cartao { background: var(--superficie); border: 1px solid var(--borda); border-radius: 14px; padding: 18px; }
+  .baixar { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+  .botao { display: block; text-align: center; padding: 18px; border-radius: 14px; background: var(--primario); color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+  .botao:focus-visible { outline: 3px solid var(--destaque); outline-offset: 3px; }
+  ol, ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 6px; }
+  code { font: 13px/1.5 ui-monospace, monospace; background: var(--fundo); border: 1px solid var(--borda); border-radius: 6px; padding: 2px 6px; word-break: break-all; }
+  .digital { display: block; padding: 10px 12px; margin-top: 8px; }
+  #lista-versoes li { color: #d1d5db; }
+  #lista-versoes .notas { display: block; color: var(--suave); font-size: 14px; white-space: pre-line; }
+  a { color: var(--destaque); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="./logo_ebgeo.webp" alt="" width="64" height="64">
+    <div>
+      <h1>EBGeo <span>Campo</span></h1>
+      <p class="suave">Relatos do terreno e posição no mapa do EBGeo</p>
+    </div>
+  </header>
+
+  <p>O app manda do terreno, para um mapa do EBGeo, a sua posição e eventos com foto e comentário, e mostra os eventos desse mapa. Entra com a mesma conta do EBGeo Web; sem conta liberada, o app não faz nada.</p>
+
+  <section class="cartao baixar" aria-labelledby="baixar">
+    <h2 id="baixar">Baixar para Android</h2>
+    <a class="botao" href="https://github.com/dsgoficial/ebgeo_campo-app/releases/latest/download/ebgeo-campo.apk">Baixar o EBGeo Campo</a>
+    <p class="suave" id="versao">A versão mais nova, publicada em <a href="https://github.com/dsgoficial/ebgeo_campo-app/releases">github.com/dsgoficial/ebgeo_campo-app</a>.</p>
+  </section>
+
+  <section class="cartao" aria-labelledby="instalar">
+    <h2 id="instalar">Instalar</h2>
+    <ol>
+      <li>Baixe o arquivo pelo botão acima, no próprio celular.</li>
+      <li>Abra o arquivo baixado. O Android pede para permitir que o navegador instale apps: permita, e depois desligue de novo em Configurações, se quiser.</li>
+      <li>Abra o EBGeo Campo e entre com a sua conta do EBGeo.</li>
+    </ol>
+  </section>
+
+  <section class="cartao" aria-labelledby="requisitos">
+    <h2 id="requisitos">O celular precisa ter</h2>
+    <ul>
+      <li>Android 11 ou mais novo.</li>
+      <li>Bloqueio de tela (PIN, padrão ou senha).</li>
+      <li>Sistema original, sem root e com o bootloader travado.</li>
+      <li>Atualização de segurança do Android de no máximo 12 meses.</li>
+    </ul>
+    <p class="suave" style="margin-top:10px">O EBGeo confere tudo isso no primeiro acesso e recusa o celular que não passa.</p>
+  </section>
+
+  <section class="cartao" aria-labelledby="atualizar">
+    <h2 id="atualizar">Atualizar</h2>
+    <p>Quando o EBGeo pedir uma versão nova, baixe de novo por esta página e instale por cima: os seus relatos na fila não se perdem. O Android só aceita a atualização assinada pela mesma chave do app que já está no celular.</p>
+  </section>
+
+  <section class="cartao" aria-labelledby="versoes">
+    <h2 id="versoes">Versões</h2>
+    <p class="suave" id="sem-versoes">A lista das versões está em <a href="https://github.com/dsgoficial/ebgeo_campo-app/releases">github.com/dsgoficial/ebgeo_campo-app/releases</a>.</p>
+    <ul id="lista-versoes" hidden></ul>
+  </section>
+
+  <section class="cartao" aria-labelledby="conferir">
+    <h2 id="conferir">Só baixe por esta página</h2>
+    <p>O endereço oficial é <code>https://dsgoficial.github.io/ebgeo_campo-app/</code>. Um app baixado de outro lugar não entra no EBGeo, mas pode pedir a sua senha numa tela falsa. A impressão digital (SHA-256) do certificado que assina o app é:</p>
+    <code class="digital">e3456ac79f3a4fc4b30ef3bd23940d43086d671750978bc940559b63845daf0a</code>
+  </section>
+
+  <p class="suave">1º Centro de Geoinformação · Divisão de Geoinformação</p>
+</main>
+<script>
+  // As versões publicadas, pela API pública do GitHub (a mais nova primeiro); sem rede, ficam os textos acima.
+  const dataBr = (iso) => new Date(iso).toLocaleDateString('pt-BR');
+  const semV = (tag) => tag.replace(/^v/, '');
+  fetch('https://api.github.com/repos/dsgoficial/ebgeo_campo-app/releases?per_page=10')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((versoes) => {
+      const publicadas = (versoes ?? []).filter((v) => !v.draft && !v.prerelease && v.tag_name);
+      if (publicadas.length === 0) return;
+      const nova = publicadas[0];
+      document.getElementById('versao').textContent = `Versão ${semV(nova.tag_name)}, de ${dataBr(nova.published_at)}.`;
+      const lista = document.getElementById('lista-versoes');
+      for (const v of publicadas) {
+        const li = document.createElement('li');
+        const titulo = document.createElement('a');
+        titulo.href = v.html_url;
+        titulo.textContent = `${semV(v.tag_name)}, de ${dataBr(v.published_at)}`;
+        li.appendChild(titulo);
+        // O que mudou: as notas da versão sem as linhas dos SHA-256, que ficam na página da versão.
+        const notas = (v.body ?? '').split('
+').filter((l) => l.trim() && !/^SHA-256/i.test(l.trim())).join('
+');
+        if (notas) {
+          const span = document.createElement('span');
+          span.className = 'notas';
+          span.textContent = notas;
+          li.appendChild(span);
+        }
+        lista.appendChild(li);
+      }
+      lista.hidden = false;
+      document.getElementById('sem-versoes').hidden = true;
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>
