@@ -45,7 +45,7 @@
 
   <section class="cartao baixar" aria-labelledby="baixar">
     <h2 id="baixar">Baixar para Android</h2>
-    <a class="botao" href="https://github.com/dsgoficial/ebgeo_campo-app/releases/latest/download/ebgeo-campo.apk">Baixar o EBGeo Campo</a>
+    <a class="botao" id="baixar-apk" href="https://github.com/dsgoficial/ebgeo_campo-app/releases/latest/download/ebgeo-campo.apk">Baixar o EBGeo Campo</a>
     <p class="suave" id="versao">A versão mais nova, publicada em <a href="https://github.com/dsgoficial/ebgeo_campo-app/releases">github.com/dsgoficial/ebgeo_campo-app</a>.</p>
   </section>
 
@@ -96,7 +96,12 @@
     .then((r) => (r.ok ? r.json() : null))
     .then((versoes) => {
       const publicadas = (versoes ?? []).filter((v) => !v.draft && !v.prerelease && v.tag_name);
-      if (publicadas.length === 0) return;
+      // Sem versão publicada, o botão levaria a uma página de erro do GitHub: some, e o texto diz por quê.
+      if (publicadas.length === 0) {
+        document.getElementById('baixar-apk').style.display = 'none';
+        document.getElementById('versao').textContent = 'Ainda não há versão publicada. A primeira sai quando o EBGeo Campo entrar em operação no EBGeo.';
+        return;
+      }
       const nova = publicadas[0];
       document.getElementById('versao').textContent = `Versão ${semV(nova.tag_name)}, de ${dataBr(nova.published_at)}.`;
       const lista = document.getElementById('lista-versoes');
@@ -107,9 +112,7 @@
         titulo.textContent = `${semV(v.tag_name)}, de ${dataBr(v.published_at)}`;
         li.appendChild(titulo);
         // O que mudou: as notas da versão sem as linhas dos SHA-256, que ficam na página da versão.
-        const notas = (v.body ?? '').split('
-').filter((l) => l.trim() && !/^SHA-256/i.test(l.trim())).join('
-');
+        const notas = (v.body ?? '').split('\n').filter((l) => l.trim() && !/^SHA-256/i.test(l.trim())).join('\n');
         if (notas) {
           const span = document.createElement('span');
           span.className = 'notas';
