@@ -5,7 +5,7 @@ Este repositório só publica o app Android do EBGeo Campo: as versões em [Rele
 ## Versões
 
 - A versão segue `MAIOR.MENOR.CORREÇÃO`, e o release se chama `v` mais ela (`v0.2.0`). A mesma versão está no app (`VERSAO_APP`, que ele mostra e manda ao EBGeo) e no `versionName` do Android; o `versionCode` só cresce, e o Android recusa instalar por cima um número menor.
-- Cada release traz o arquivo `ebgeo-campo.apk`, sempre com esse nome, e por isso o botão da página aponta sempre para a mais nova. As notas trazem o que mudou, numa linha por item, e no fim o SHA-256 do APK e o do certificado que o assina. A página lista as dez últimas versões com as notas.
+- Cada release traz o mesmo APK com dois nomes: `ebgeo-campo.apk`, sempre igual, para o link fixo `releases/latest/download/ebgeo-campo.apk`, e `ebgeo-campo-<versão>.apk`, que o botão da página baixa, para o celular não confundir o download novo com o velho (desde a 0.1.5). As notas trazem o que mudou, numa linha por item, e no fim o SHA-256 do APK e o do certificado que o assina. A página lista as dez últimas versões com as notas.
 - Versão publicada não se apaga nem se troca: o conserto sai como versão nova. Quando a velha tiver de parar, o EBGeo sobe `CAMPO_VERSAO_MINIMA_APP`, e o app abaixo dela recebe "atualize o app" com o endereço desta página.
 
 ## O certificado

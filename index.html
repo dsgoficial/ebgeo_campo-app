@@ -70,7 +70,7 @@
 
   <section class="cartao" aria-labelledby="atualizar">
     <h2 id="atualizar">Atualizar</h2>
-    <p>Quando o EBGeo pedir uma versão nova, baixe de novo por esta página e instale por cima: os seus relatos na fila não se perdem. O Android só aceita a atualização assinada pela mesma chave do app que já está no celular.</p>
+    <p>Quando o EBGeo pedir uma versão nova, baixe de novo por esta página e instale por cima: os seus relatos na fila não se perdem. O arquivo leva a versão no nome, como <code>ebgeo-campo-0.1.5.apk</code>: abra o da versão nova, e confira a versão em Ajustes, na engrenagem do app. O Android só aceita a atualização assinada pela mesma chave do app que já está no celular.</p>
   </section>
 
   <section class="cartao" aria-labelledby="versoes">
@@ -103,6 +103,14 @@
       }
       const nova = publicadas[0];
       document.getElementById('versao').textContent = `Versão ${semV(nova.tag_name)}, de ${dataBr(nova.published_at)}.`;
+      // O arquivo com a versão no nome (desde a 0.1.5): no celular, o download repetido do mesmo nome vira
+      // "ebgeo-campo (1).apk", e era fácil instalar o velho. Sem ele, fica o link fixo.
+      const comVersao = (nova.assets ?? []).find((a) => a.name === `ebgeo-campo-${semV(nova.tag_name)}.apk`);
+      if (comVersao) {
+        const botao = document.getElementById('baixar-apk');
+        botao.href = comVersao.browser_download_url;
+        botao.textContent = `Baixar o EBGeo Campo ${semV(nova.tag_name)}`;
+      }
       const lista = document.getElementById('lista-versoes');
       for (const v of publicadas) {
         const li = document.createElement('li');
